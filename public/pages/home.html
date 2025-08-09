@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Xenofund</title>
+    <link rel="stylesheet" href="../styles/home.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="left">
+        <div class="logo">
+          <img src="../images/logo.png" alt="" height="60px" />
+        </div>
+        <h6 id="greeting"></h6>
+      </div>
+
+      <div class="right"></div>
+    </header>
+
+    <main class="dashboard">
+      <div class="account-container">
+        <div class="top">
+          <p>Available Balance</p>
+        </div>
+        <div class="bottom">
+          <p>₦0.00</p>
+          <button>Add Money</button>
+        </div>
+      </div>
+      <div class="account-actions">
+        <div class="action-container">
+          <div></div>
+          <p>Withdraw</p>
+        </div>
+        <div class="action-container">
+          <div></div>
+          <p>Deposit</p>
+        </div>
+        <div class="action-container">
+          <div></div>
+          <p>Send</p>
+        </div>
+      </div>
+      <div class="account-actions">
+        <div class="action-container">
+          <div></div>
+          <p>Airtime</p>
+        </div>
+        <div class="action-container">
+          <div></div>
+          <p>Data</p>
+        </div>
+        <div class="action-container">
+          <div></div>
+          <p>Electricity</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <nav class="navbar">
+          <ul class="nav-links">
+            <li><a href="../pages/home.html">Home</a></li>
+            <li><a href="../pages/tasks.html">Tasks</a></li>
+            <li><a href="../pages/rewards.html">Rewards</a></li>
+            <li><a href="../pages/profile.html">Profile</a></li>
+          </ul>
+      </nav>
+    </footer>
+
+    <script>
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'login.html';
+      } else {
+        // Decode JWT to get the payload
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        // Display the user's name in the greeting
+        document.getElementById('greeting').textContent = `Hi, ${payload.name}`;
+      }
+
+    </script>
+  </body>
+</html>
